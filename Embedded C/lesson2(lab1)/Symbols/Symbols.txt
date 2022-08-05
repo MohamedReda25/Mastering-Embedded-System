@@ -1,0 +1,21 @@
+ app.o
+
+00000000 T main
+00000000 D str
+         U uart_send_string
+
+
+ startup.o
+
+         U main
+00000000 T reset
+         U stack_top
+00000008 t stop
+
+
+ uart.o
+00000000 T uart_send_string
+
+
+
+
