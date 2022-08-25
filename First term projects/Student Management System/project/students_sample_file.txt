@@ -1,0 +1,8 @@
+1 Mohamed Reda 3.5 1 2 3 4 5
+2 Ahmed Ali 3 1 2 3 4 5
+3 Ziad Tarek 2.8 1 2 4 6 5
+3 Rami Ahmed 3.6 2 7 3 1 6
+4 Omar Kamal 2.4 1 2 3 4 5
+5 Nada Reda 2.4 1 2 3 4 5
+6 Mahmoud Sayed 2.4 1 2 3 4 5
+7 Mohamed Gamal 3.2 1 2 3 4 5
