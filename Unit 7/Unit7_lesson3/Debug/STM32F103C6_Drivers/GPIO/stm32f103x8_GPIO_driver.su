@@ -1,0 +1,9 @@
+stm32f103x8_GPIO_driver.c:12:9:getposition	24	static
+stm32f103x8_GPIO_driver.c:83:6:MCAL_GPIO_INIT	32	static
+stm32f103x8_GPIO_driver.c:136:6:MCAL_GPIO_DEINIT	16	static
+stm32f103x8_GPIO_driver.c:192:6:MCAL_GPIO_WRITE_PIN	16	static
+stm32f103x8_GPIO_driver.c:219:6:MCAL_GPIO_WRITE_PORT	16	static
+stm32f103x8_GPIO_driver.c:240:9:MCAL_GPIO_READ_PIN	24	static
+stm32f103x8_GPIO_driver.c:267:10:MCAL_GPIO_READ_PORT	24	static
+stm32f103x8_GPIO_driver.c:289:6:MCAL_GPIO_TogglePin	16	static
+stm32f103x8_GPIO_driver.c:312:9:MCAL_GPIO_LockPin	24	static
