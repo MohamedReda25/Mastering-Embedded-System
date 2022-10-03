@@ -1,0 +1,840 @@
+
+Section_1.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000045c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000018  00800060  0000045c  000004f0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000016  00800078  00800078  00000508  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000508  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000538  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000128  00000000  00000000  00000574  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00001609  00000000  00000000  0000069c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000a33  00000000  00000000  00001ca5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000ac5  00000000  00000000  000026d8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  000002f8  00000000  00000000  000031a0  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    0000059c  00000000  00000000  00003498  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000995  00000000  00000000  00003a34  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 000000e8  00000000  00000000  000043c9  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ec e5       	ldi	r30, 0x5C	; 92
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a8 37       	cpi	r26, 0x78	; 120
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a8 e7       	ldi	r26, 0x78	; 120
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	ae 38       	cpi	r26, 0x8E	; 142
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 95 01 	call	0x32a	; 0x32a <main>
+  8a:	0c 94 2c 02 	jmp	0x458	; 0x458 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <LCD_lcd_kick>:
+	
+	
+	//LCD_CTRL &= ~(1 << RW_SWITCH);
+	MCAL_GPIO_WRITE_PIN(portB,RW_SWITCH,GPIO_PIN_RESET);
+	
+}
+  92:	41 e0       	ldi	r20, 0x01	; 1
+  94:	68 e0       	ldi	r22, 0x08	; 8
+  96:	88 e3       	ldi	r24, 0x38	; 56
+  98:	90 e0       	ldi	r25, 0x00	; 0
+  9a:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+  9e:	83 ed       	ldi	r24, 0xD3	; 211
+  a0:	90 e3       	ldi	r25, 0x30	; 48
+  a2:	01 97       	sbiw	r24, 0x01	; 1
+  a4:	f1 f7       	brne	.-4      	; 0xa2 <LCD_lcd_kick+0x10>
+  a6:	00 c0       	rjmp	.+0      	; 0xa8 <LCD_lcd_kick+0x16>
+  a8:	00 00       	nop
+  aa:	40 e0       	ldi	r20, 0x00	; 0
+  ac:	68 e0       	ldi	r22, 0x08	; 8
+  ae:	88 e3       	ldi	r24, 0x38	; 56
+  b0:	90 e0       	ldi	r25, 0x00	; 0
+  b2:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+  b6:	08 95       	ret
+
+000000b8 <LCD_WRITE_COMMAND>:
+
+
+void LCD_WRITE_COMMAND(unsigned char command){
+  b8:	cf 93       	push	r28
+  ba:	c8 2f       	mov	r28, r24
+	_delay_ms(1);
+	LCD_lcd_kick();
+	#endif
+	#ifdef FOUR_BIT_MODE
+	//LCD_check_lcd_isbusy();
+	*(LCD_PORT) = (*(LCD_PORT) & 0x0F) | (command & 0xF0);
+  bc:	8b b3       	in	r24, 0x1b	; 27
+  be:	8f 70       	andi	r24, 0x0F	; 15
+  c0:	9c 2f       	mov	r25, r28
+  c2:	90 7f       	andi	r25, 0xF0	; 240
+  c4:	89 2b       	or	r24, r25
+  c6:	8b bb       	out	0x1b, r24	; 27
+	//LCD_CTRL &= ~ ((1<<RW_SWITCH)|(1<<RS_SWITCH));
+	MCAL_GPIO_WRITE_PIN(portB,RW_SWITCH,GPIO_PIN_RESET);
+  c8:	40 e0       	ldi	r20, 0x00	; 0
+  ca:	64 e0       	ldi	r22, 0x04	; 4
+  cc:	88 e3       	ldi	r24, 0x38	; 56
+  ce:	90 e0       	ldi	r25, 0x00	; 0
+  d0:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	MCAL_GPIO_WRITE_PIN(portB,RS_SWITCH,GPIO_PIN_RESET);
+  d4:	40 e0       	ldi	r20, 0x00	; 0
+  d6:	62 e0       	ldi	r22, 0x02	; 2
+  d8:	88 e3       	ldi	r24, 0x38	; 56
+  da:	90 e0       	ldi	r25, 0x00	; 0
+  dc:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	LCD_lcd_kick ();
+  e0:	0e 94 49 00 	call	0x92	; 0x92 <LCD_lcd_kick>
+	
+	*(LCD_PORT) = (*(LCD_PORT) & 0x0F) | (command << 4);
+  e4:	2b b3       	in	r18, 0x1b	; 27
+  e6:	30 e1       	ldi	r19, 0x10	; 16
+  e8:	c3 9f       	mul	r28, r19
+  ea:	c0 01       	movw	r24, r0
+  ec:	11 24       	eor	r1, r1
+  ee:	92 2f       	mov	r25, r18
+  f0:	9f 70       	andi	r25, 0x0F	; 15
+  f2:	89 2b       	or	r24, r25
+  f4:	8b bb       	out	0x1b, r24	; 27
+	//LCD_CTRL &= ~ ((1<<RW_SWITCH)|(1<<RS_SWITCH));
+	MCAL_GPIO_WRITE_PIN(portB,RW_SWITCH,GPIO_PIN_RESET);
+  f6:	40 e0       	ldi	r20, 0x00	; 0
+  f8:	64 e0       	ldi	r22, 0x04	; 4
+  fa:	88 e3       	ldi	r24, 0x38	; 56
+  fc:	90 e0       	ldi	r25, 0x00	; 0
+  fe:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	MCAL_GPIO_WRITE_PIN(portB,RS_SWITCH,GPIO_PIN_RESET);
+ 102:	40 e0       	ldi	r20, 0x00	; 0
+ 104:	62 e0       	ldi	r22, 0x02	; 2
+ 106:	88 e3       	ldi	r24, 0x38	; 56
+ 108:	90 e0       	ldi	r25, 0x00	; 0
+ 10a:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	LCD_lcd_kick();
+ 10e:	0e 94 49 00 	call	0x92	; 0x92 <LCD_lcd_kick>
+	#endif
+}
+ 112:	cf 91       	pop	r28
+ 114:	08 95       	ret
+
+00000116 <LCD_clear_screen>:
+#include "LCD.h"
+
+GPIO_Pinconfig_t config;
+
+void LCD_clear_screen(){
+	LCD_WRITE_COMMAND(LCD_CLEAR_SCREEN);
+ 116:	81 e0       	ldi	r24, 0x01	; 1
+ 118:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+ 11c:	08 95       	ret
+
+0000011e <LCD_GOTO_XY>:
+	
+	//LCD_CTRL &= ~(1 << EN_SWITCH);
+	MCAL_GPIO_WRITE_PIN(portB,EN_SWITCH,GPIO_PIN_RESET);
+}
+
+void LCD_GOTO_XY(unsigned char line, unsigned char position){
+ 11e:	cf 93       	push	r28
+ 120:	df 93       	push	r29
+ 122:	c8 2f       	mov	r28, r24
+ 124:	d6 2f       	mov	r29, r22
+	if (line == 1)
+ 126:	81 30       	cpi	r24, 0x01	; 1
+ 128:	31 f4       	brne	.+12     	; 0x136 <LCD_GOTO_XY+0x18>
+	{
+		if (position < 16 && position >= 0)
+ 12a:	60 31       	cpi	r22, 0x10	; 16
+ 12c:	20 f4       	brcc	.+8      	; 0x136 <LCD_GOTO_XY+0x18>
+		{
+			LCD_WRITE_COMMAND(LCD_BEGIN_AT_FIRST_ROW+position);
+ 12e:	80 e8       	ldi	r24, 0x80	; 128
+ 130:	86 0f       	add	r24, r22
+ 132:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+		}
+	}
+	if (line == 2)
+ 136:	c2 30       	cpi	r28, 0x02	; 2
+ 138:	31 f4       	brne	.+12     	; 0x146 <LCD_GOTO_XY+0x28>
+	{
+		if (position < 16 && position >= 0)
+ 13a:	d0 31       	cpi	r29, 0x10	; 16
+ 13c:	20 f4       	brcc	.+8      	; 0x146 <LCD_GOTO_XY+0x28>
+		{
+
+			LCD_WRITE_COMMAND(LCD_BEGIN_AT_SECOND_ROW+position);
+ 13e:	80 ec       	ldi	r24, 0xC0	; 192
+ 140:	8d 0f       	add	r24, r29
+ 142:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+		}
+	}
+}
+ 146:	df 91       	pop	r29
+ 148:	cf 91       	pop	r28
+ 14a:	08 95       	ret
+
+0000014c <LCD_INIT>:
+
+void LCD_INIT(){
+ 14c:	ef 92       	push	r14
+ 14e:	ff 92       	push	r15
+ 150:	0f 93       	push	r16
+ 152:	1f 93       	push	r17
+ 154:	cf 93       	push	r28
+ 156:	df 93       	push	r29
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 158:	87 e8       	ldi	r24, 0x87	; 135
+ 15a:	93 e1       	ldi	r25, 0x13	; 19
+ 15c:	01 97       	sbiw	r24, 0x01	; 1
+ 15e:	f1 f7       	brne	.-4      	; 0x15c <LCD_INIT+0x10>
+ 160:	00 c0       	rjmp	.+0      	; 0x162 <LCD_INIT+0x16>
+ 162:	00 00       	nop
+	_delay_ms(20);
+	//DataDir_LCD_CTRL |= (1<<EN_SWITCH | 1<<RS_SWITCH | 1<<RW_SWITCH);
+	config.Pin_number = EN_SWITCH;
+ 164:	c8 e7       	ldi	r28, 0x78	; 120
+ 166:	d0 e0       	ldi	r29, 0x00	; 0
+ 168:	08 e0       	ldi	r16, 0x08	; 8
+ 16a:	08 83       	st	Y, r16
+	config.Mode = GPIO_Output;
+ 16c:	11 e0       	ldi	r17, 0x01	; 1
+ 16e:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portB,&config);
+ 170:	be 01       	movw	r22, r28
+ 172:	88 e3       	ldi	r24, 0x38	; 56
+ 174:	90 e0       	ldi	r25, 0x00	; 0
+ 176:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = RS_SWITCH;
+ 17a:	68 94       	set
+ 17c:	ee 24       	eor	r14, r14
+ 17e:	e1 f8       	bld	r14, 1
+ 180:	e8 82       	st	Y, r14
+	config.Mode = GPIO_Output;
+ 182:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portB,&config);
+ 184:	be 01       	movw	r22, r28
+ 186:	88 e3       	ldi	r24, 0x38	; 56
+ 188:	90 e0       	ldi	r25, 0x00	; 0
+ 18a:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = RW_SWITCH;
+ 18e:	68 94       	set
+ 190:	ff 24       	eor	r15, r15
+ 192:	f2 f8       	bld	r15, 2
+ 194:	f8 82       	st	Y, r15
+	config.Mode = GPIO_Output;
+ 196:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portB,&config);
+ 198:	be 01       	movw	r22, r28
+ 19a:	88 e3       	ldi	r24, 0x38	; 56
+ 19c:	90 e0       	ldi	r25, 0x00	; 0
+ 19e:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	
+	
+	//LCD_CTRL &= ~ (1<<EN_SWITCH | 1<<RS_SWITCH | 1<<RW_SWITCH);
+	MCAL_GPIO_WRITE_PIN(portB,EN_SWITCH,GPIO_PIN_RESET);
+ 1a2:	40 e0       	ldi	r20, 0x00	; 0
+ 1a4:	68 e0       	ldi	r22, 0x08	; 8
+ 1a6:	88 e3       	ldi	r24, 0x38	; 56
+ 1a8:	90 e0       	ldi	r25, 0x00	; 0
+ 1aa:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	MCAL_GPIO_WRITE_PIN(portB,RS_SWITCH,GPIO_PIN_RESET);
+ 1ae:	40 e0       	ldi	r20, 0x00	; 0
+ 1b0:	62 e0       	ldi	r22, 0x02	; 2
+ 1b2:	88 e3       	ldi	r24, 0x38	; 56
+ 1b4:	90 e0       	ldi	r25, 0x00	; 0
+ 1b6:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	MCAL_GPIO_WRITE_PIN(portB,RW_SWITCH,GPIO_PIN_RESET);
+ 1ba:	40 e0       	ldi	r20, 0x00	; 0
+ 1bc:	64 e0       	ldi	r22, 0x04	; 4
+ 1be:	88 e3       	ldi	r24, 0x38	; 56
+ 1c0:	90 e0       	ldi	r25, 0x00	; 0
+ 1c2:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	//DataDir_LCD_PORT = 0xFF;
+	config.Pin_number = GPIO_PIN0;
+ 1c6:	18 83       	st	Y, r17
+	config.Mode = GPIO_Output;
+ 1c8:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 1ca:	be 01       	movw	r22, r28
+ 1cc:	8b e3       	ldi	r24, 0x3B	; 59
+ 1ce:	90 e0       	ldi	r25, 0x00	; 0
+ 1d0:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = GPIO_PIN1;
+ 1d4:	e8 82       	st	Y, r14
+	config.Mode = GPIO_Output;
+ 1d6:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 1d8:	be 01       	movw	r22, r28
+ 1da:	8b e3       	ldi	r24, 0x3B	; 59
+ 1dc:	90 e0       	ldi	r25, 0x00	; 0
+ 1de:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = GPIO_PIN2;
+ 1e2:	f8 82       	st	Y, r15
+	config.Mode = GPIO_Output;
+ 1e4:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 1e6:	be 01       	movw	r22, r28
+ 1e8:	8b e3       	ldi	r24, 0x3B	; 59
+ 1ea:	90 e0       	ldi	r25, 0x00	; 0
+ 1ec:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = GPIO_PIN3;
+ 1f0:	08 83       	st	Y, r16
+	config.Mode = GPIO_Output;
+ 1f2:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 1f4:	be 01       	movw	r22, r28
+ 1f6:	8b e3       	ldi	r24, 0x3B	; 59
+ 1f8:	90 e0       	ldi	r25, 0x00	; 0
+ 1fa:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	
+	config.Pin_number = GPIO_PIN4;
+ 1fe:	80 e1       	ldi	r24, 0x10	; 16
+ 200:	88 83       	st	Y, r24
+	config.Mode = GPIO_Output;
+ 202:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 204:	be 01       	movw	r22, r28
+ 206:	8b e3       	ldi	r24, 0x3B	; 59
+ 208:	90 e0       	ldi	r25, 0x00	; 0
+ 20a:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = GPIO_PIN5;
+ 20e:	80 e2       	ldi	r24, 0x20	; 32
+ 210:	88 83       	st	Y, r24
+	config.Mode = GPIO_Output;
+ 212:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 214:	be 01       	movw	r22, r28
+ 216:	8b e3       	ldi	r24, 0x3B	; 59
+ 218:	90 e0       	ldi	r25, 0x00	; 0
+ 21a:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = GPIO_PIN6;
+ 21e:	80 e4       	ldi	r24, 0x40	; 64
+ 220:	88 83       	st	Y, r24
+	config.Mode = GPIO_Output;
+ 222:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 224:	be 01       	movw	r22, r28
+ 226:	8b e3       	ldi	r24, 0x3B	; 59
+ 228:	90 e0       	ldi	r25, 0x00	; 0
+ 22a:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+	
+	config.Pin_number = GPIO_PIN7;
+ 22e:	80 e8       	ldi	r24, 0x80	; 128
+ 230:	88 83       	st	Y, r24
+	config.Mode = GPIO_Output;
+ 232:	19 83       	std	Y+1, r17	; 0x01
+	MCAL_GPIO_INIT(portA,&config);
+ 234:	be 01       	movw	r22, r28
+ 236:	8b e3       	ldi	r24, 0x3B	; 59
+ 238:	90 e0       	ldi	r25, 0x00	; 0
+ 23a:	0e 94 d5 01 	call	0x3aa	; 0x3aa <MCAL_GPIO_INIT>
+ 23e:	85 ea       	ldi	r24, 0xA5	; 165
+ 240:	9e e0       	ldi	r25, 0x0E	; 14
+ 242:	01 97       	sbiw	r24, 0x01	; 1
+ 244:	f1 f7       	brne	.-4      	; 0x242 <LCD_INIT+0xf6>
+ 246:	00 c0       	rjmp	.+0      	; 0x248 <LCD_INIT+0xfc>
+ 248:	00 00       	nop
+	
+	
+	_delay_ms(15);
+	LCD_clear_screen();
+ 24a:	0e 94 8b 00 	call	0x116	; 0x116 <LCD_clear_screen>
+	//LCD_WRITE_COMMAND(0x02);		/* send for 4 bit initialization of LCD  */
+	//LCD_WRITE_COMMAND(0x28);              /* 2 line, 5*7 matrix in 4-bit mode */
+	//LCD_WRITE_COMMAND(0x0c);              /* Display on cursor off*/
+	//LCD_WRITE_COMMAND(0x06);              /* Increment cursor (shift cursor to right)*/
+	//LCD_WRITE_COMMAND(0x01);
+	LCD_WRITE_COMMAND(0x02);
+ 24e:	82 e0       	ldi	r24, 0x02	; 2
+ 250:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+	LCD_WRITE_COMMAND(LCD_FUNCTION_4BIT_2LINES);
+ 254:	88 e2       	ldi	r24, 0x28	; 40
+ 256:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+	#endif
+	LCD_WRITE_COMMAND(LCD_ENTRY_MODE);
+ 25a:	86 e0       	ldi	r24, 0x06	; 6
+ 25c:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+	LCD_WRITE_COMMAND(LCD_BEGIN_AT_FIRST_ROW);
+ 260:	80 e8       	ldi	r24, 0x80	; 128
+ 262:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+	LCD_WRITE_COMMAND(LCD_DISP_ON_CURSOR_BLINK);
+ 266:	8f e0       	ldi	r24, 0x0F	; 15
+ 268:	0e 94 5c 00 	call	0xb8	; 0xb8 <LCD_WRITE_COMMAND>
+}
+ 26c:	df 91       	pop	r29
+ 26e:	cf 91       	pop	r28
+ 270:	1f 91       	pop	r17
+ 272:	0f 91       	pop	r16
+ 274:	ff 90       	pop	r15
+ 276:	ef 90       	pop	r14
+ 278:	08 95       	ret
+
+0000027a <LCD_WRITE_CHAR>:
+	
+	LCD_lcd_kick();
+	#endif
+}
+
+void LCD_WRITE_CHAR(unsigned char character){
+ 27a:	cf 93       	push	r28
+ 27c:	c8 2f       	mov	r28, r24
+	_delay_ms(1);
+	LCD_lcd_kick();
+	#endif
+	#ifdef FOUR_BIT_MODE
+	//LCD_check_lcd_isbusy();
+	*(LCD_PORT) = (*(LCD_PORT) & 0x0F) | (character & 0xF0);
+ 27e:	8b b3       	in	r24, 0x1b	; 27
+ 280:	8f 70       	andi	r24, 0x0F	; 15
+ 282:	9c 2f       	mov	r25, r28
+ 284:	90 7f       	andi	r25, 0xF0	; 240
+ 286:	89 2b       	or	r24, r25
+ 288:	8b bb       	out	0x1b, r24	; 27
+	
+	//LCD_CTRL |= 1<<RS_SWITCH; //turn RS ON for Data mode.
+	MCAL_GPIO_WRITE_PIN(portB,RS_SWITCH,GPIO_PIN_SET);
+ 28a:	41 e0       	ldi	r20, 0x01	; 1
+ 28c:	62 e0       	ldi	r22, 0x02	; 2
+ 28e:	88 e3       	ldi	r24, 0x38	; 56
+ 290:	90 e0       	ldi	r25, 0x00	; 0
+ 292:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	//LCD_CTRL &= ~ (1<<RW_SWITCH);//turn RW off so you can write.
+	MCAL_GPIO_WRITE_PIN(portB,RW_SWITCH,GPIO_PIN_RESET);
+ 296:	40 e0       	ldi	r20, 0x00	; 0
+ 298:	64 e0       	ldi	r22, 0x04	; 4
+ 29a:	88 e3       	ldi	r24, 0x38	; 56
+ 29c:	90 e0       	ldi	r25, 0x00	; 0
+ 29e:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	
+	LCD_lcd_kick();
+ 2a2:	0e 94 49 00 	call	0x92	; 0x92 <LCD_lcd_kick>
+	
+	*(LCD_PORT) = (*(LCD_PORT) & 0x0F) | (character << 4);
+ 2a6:	2b b3       	in	r18, 0x1b	; 27
+ 2a8:	30 e1       	ldi	r19, 0x10	; 16
+ 2aa:	c3 9f       	mul	r28, r19
+ 2ac:	c0 01       	movw	r24, r0
+ 2ae:	11 24       	eor	r1, r1
+ 2b0:	92 2f       	mov	r25, r18
+ 2b2:	9f 70       	andi	r25, 0x0F	; 15
+ 2b4:	89 2b       	or	r24, r25
+ 2b6:	8b bb       	out	0x1b, r24	; 27
+	
+	//LCD_CTRL |= 1<<RS_SWITCH; //turn RS ON for Data mode.
+	MCAL_GPIO_WRITE_PIN(portB,RS_SWITCH,GPIO_PIN_SET);
+ 2b8:	41 e0       	ldi	r20, 0x01	; 1
+ 2ba:	62 e0       	ldi	r22, 0x02	; 2
+ 2bc:	88 e3       	ldi	r24, 0x38	; 56
+ 2be:	90 e0       	ldi	r25, 0x00	; 0
+ 2c0:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	//LCD_CTRL &= ~ (1<<RW_SWITCH);//turn RW off so you can write.
+	MCAL_GPIO_WRITE_PIN(portB,RW_SWITCH,GPIO_PIN_RESET);
+ 2c4:	40 e0       	ldi	r20, 0x00	; 0
+ 2c6:	64 e0       	ldi	r22, 0x04	; 4
+ 2c8:	88 e3       	ldi	r24, 0x38	; 56
+ 2ca:	90 e0       	ldi	r25, 0x00	; 0
+ 2cc:	0e 94 eb 01 	call	0x3d6	; 0x3d6 <MCAL_GPIO_WRITE_PIN>
+	
+	LCD_lcd_kick ();
+ 2d0:	0e 94 49 00 	call	0x92	; 0x92 <LCD_lcd_kick>
+	#endif
+}
+ 2d4:	cf 91       	pop	r28
+ 2d6:	08 95       	ret
+
+000002d8 <LCD_WRITE_STRING>:
+
+void LCD_WRITE_STRING(char* string){
+ 2d8:	0f 93       	push	r16
+ 2da:	1f 93       	push	r17
+ 2dc:	cf 93       	push	r28
+ 2de:	df 93       	push	r29
+ 2e0:	8c 01       	movw	r16, r24
+	int count = 0;
+ 2e2:	c0 e0       	ldi	r28, 0x00	; 0
+ 2e4:	d0 e0       	ldi	r29, 0x00	; 0
+	while (*string > 0){
+ 2e6:	18 c0       	rjmp	.+48     	; 0x318 <LCD_WRITE_STRING+0x40>
+		count++;
+ 2e8:	21 96       	adiw	r28, 0x01	; 1
+		LCD_WRITE_CHAR(*string++);
+ 2ea:	0f 5f       	subi	r16, 0xFF	; 255
+ 2ec:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2ee:	0e 94 3d 01 	call	0x27a	; 0x27a <LCD_WRITE_CHAR>
+		if (count == 16)
+ 2f2:	c0 31       	cpi	r28, 0x10	; 16
+ 2f4:	d1 05       	cpc	r29, r1
+ 2f6:	29 f4       	brne	.+10     	; 0x302 <LCD_WRITE_STRING+0x2a>
+		{
+			LCD_GOTO_XY(2,0);
+ 2f8:	60 e0       	ldi	r22, 0x00	; 0
+ 2fa:	82 e0       	ldi	r24, 0x02	; 2
+ 2fc:	0e 94 8f 00 	call	0x11e	; 0x11e <LCD_GOTO_XY>
+ 300:	0b c0       	rjmp	.+22     	; 0x318 <LCD_WRITE_STRING+0x40>
+		}
+		else if (count == 32)
+ 302:	c0 32       	cpi	r28, 0x20	; 32
+ 304:	d1 05       	cpc	r29, r1
+ 306:	41 f4       	brne	.+16     	; 0x318 <LCD_WRITE_STRING+0x40>
+		{
+			LCD_clear_screen();
+ 308:	0e 94 8b 00 	call	0x116	; 0x116 <LCD_clear_screen>
+			LCD_GOTO_XY(1,0);
+ 30c:	60 e0       	ldi	r22, 0x00	; 0
+ 30e:	81 e0       	ldi	r24, 0x01	; 1
+ 310:	0e 94 8f 00 	call	0x11e	; 0x11e <LCD_GOTO_XY>
+			count = 0;
+ 314:	c0 e0       	ldi	r28, 0x00	; 0
+ 316:	d0 e0       	ldi	r29, 0x00	; 0
+	#endif
+}
+
+void LCD_WRITE_STRING(char* string){
+	int count = 0;
+	while (*string > 0){
+ 318:	f8 01       	movw	r30, r16
+ 31a:	80 81       	ld	r24, Z
+ 31c:	81 11       	cpse	r24, r1
+ 31e:	e4 cf       	rjmp	.-56     	; 0x2e8 <LCD_WRITE_STRING+0x10>
+			LCD_clear_screen();
+			LCD_GOTO_XY(1,0);
+			count = 0;
+		}
+	}
+}
+ 320:	df 91       	pop	r29
+ 322:	cf 91       	pop	r28
+ 324:	1f 91       	pop	r17
+ 326:	0f 91       	pop	r16
+ 328:	08 95       	ret
+
+0000032a <main>:
+#include "MCAL\UART.h"
+
+#define F_CPU 8000000UL
+
+int main(void)
+{
+ 32a:	cf 93       	push	r28
+ 32c:	df 93       	push	r29
+ 32e:	cd b7       	in	r28, 0x3d	; 61
+ 330:	de b7       	in	r29, 0x3e	; 62
+ 332:	2f 97       	sbiw	r28, 0x0f	; 15
+ 334:	0f b6       	in	r0, 0x3f	; 63
+ 336:	f8 94       	cli
+ 338:	de bf       	out	0x3e, r29	; 62
+ 33a:	0f be       	out	0x3f, r0	; 63
+ 33c:	cd bf       	out	0x3d, r28	; 61
+	char* st;
+	LCD_INIT();
+ 33e:	0e 94 a6 00 	call	0x14c	; 0x14c <LCD_INIT>
+	UART_INIT();
+ 342:	0e 94 f8 01 	call	0x3f0	; 0x3f0 <UART_INIT>
+	LCD_GOTO_XY(1,0);
+ 346:	60 e0       	ldi	r22, 0x00	; 0
+ 348:	81 e0       	ldi	r24, 0x01	; 1
+ 34a:	0e 94 8f 00 	call	0x11e	; 0x11e <LCD_GOTO_XY>
+	
+	LCD_WRITE_STRING("UART TR");
+ 34e:	80 e6       	ldi	r24, 0x60	; 96
+ 350:	90 e0       	ldi	r25, 0x00	; 0
+ 352:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <LCD_WRITE_STRING>
+ 356:	2f ed       	ldi	r18, 0xDF	; 223
+ 358:	83 e9       	ldi	r24, 0x93	; 147
+ 35a:	94 e0       	ldi	r25, 0x04	; 4
+ 35c:	21 50       	subi	r18, 0x01	; 1
+ 35e:	80 40       	sbci	r24, 0x00	; 0
+ 360:	90 40       	sbci	r25, 0x00	; 0
+ 362:	e1 f7       	brne	.-8      	; 0x35c <main+0x32>
+ 364:	00 c0       	rjmp	.+0      	; 0x366 <main+0x3c>
+ 366:	00 00       	nop
+	_delay_ms(1500);
+	
+	unsigned char str[15] = "Learn in depth";
+ 368:	8f e0       	ldi	r24, 0x0F	; 15
+ 36a:	e8 e6       	ldi	r30, 0x68	; 104
+ 36c:	f0 e0       	ldi	r31, 0x00	; 0
+ 36e:	de 01       	movw	r26, r28
+ 370:	11 96       	adiw	r26, 0x01	; 1
+ 372:	01 90       	ld	r0, Z+
+ 374:	0d 92       	st	X+, r0
+ 376:	8a 95       	dec	r24
+ 378:	e1 f7       	brne	.-8      	; 0x372 <main+0x48>
+	UART_SEND_STRING(str);
+ 37a:	ce 01       	movw	r24, r28
+ 37c:	01 96       	adiw	r24, 0x01	; 1
+ 37e:	0e 94 0c 02 	call	0x418	; 0x418 <UART_SEND_STRING>
+	
+	
+	while (1)
+	{
+		LCD_GOTO_XY(2,0);
+ 382:	60 e0       	ldi	r22, 0x00	; 0
+ 384:	82 e0       	ldi	r24, 0x02	; 2
+ 386:	0e 94 8f 00 	call	0x11e	; 0x11e <LCD_GOTO_XY>
+		st = UART_RECIEVE_STRING();
+ 38a:	0e 94 1c 02 	call	0x438	; 0x438 <UART_RECIEVE_STRING>
+		LCD_WRITE_STRING(st);
+ 38e:	0e 94 6c 01 	call	0x2d8	; 0x2d8 <LCD_WRITE_STRING>
+ 392:	2f e7       	ldi	r18, 0x7F	; 127
+ 394:	84 e8       	ldi	r24, 0x84	; 132
+ 396:	9e e1       	ldi	r25, 0x1E	; 30
+ 398:	21 50       	subi	r18, 0x01	; 1
+ 39a:	80 40       	sbci	r24, 0x00	; 0
+ 39c:	90 40       	sbci	r25, 0x00	; 0
+ 39e:	e1 f7       	brne	.-8      	; 0x398 <main+0x6e>
+ 3a0:	00 c0       	rjmp	.+0      	; 0x3a2 <main+0x78>
+ 3a2:	00 00       	nop
+		_delay_ms(10000);
+		LCD_clear_screen();
+ 3a4:	0e 94 8b 00 	call	0x116	; 0x116 <LCD_clear_screen>
+ 3a8:	ec cf       	rjmp	.-40     	; 0x382 <main+0x58>
+
+000003aa <MCAL_GPIO_INIT>:
+
+
+
+void MCAL_GPIO_DEINIT( uint8_t* GPIOx){
+*(GPIOx)  = (uint8_t)0x00;
+*(GPIOx-1) = (uint8_t)0x00;
+ 3aa:	fb 01       	movw	r30, r22
+ 3ac:	21 81       	ldd	r18, Z+1	; 0x01
+ 3ae:	21 30       	cpi	r18, 0x01	; 1
+ 3b0:	39 f4       	brne	.+14     	; 0x3c0 <MCAL_GPIO_INIT+0x16>
+ 3b2:	20 81       	ld	r18, Z
+ 3b4:	e8 2f       	mov	r30, r24
+ 3b6:	f9 2f       	mov	r31, r25
+ 3b8:	82 91       	ld	r24, -Z
+ 3ba:	82 2b       	or	r24, r18
+ 3bc:	80 83       	st	Z, r24
+ 3be:	08 95       	ret
+ 3c0:	fb 01       	movw	r30, r22
+ 3c2:	20 81       	ld	r18, Z
+ 3c4:	30 e0       	ldi	r19, 0x00	; 0
+ 3c6:	20 95       	com	r18
+ 3c8:	30 95       	com	r19
+ 3ca:	e8 2f       	mov	r30, r24
+ 3cc:	f9 2f       	mov	r31, r25
+ 3ce:	82 91       	ld	r24, -Z
+ 3d0:	28 23       	and	r18, r24
+ 3d2:	20 83       	st	Z, r18
+ 3d4:	08 95       	ret
+
+000003d6 <MCAL_GPIO_WRITE_PIN>:
+}
+
+
+
+void MCAL_GPIO_WRITE_PIN(uint8_t* GPIOx, uint8_t pin_number , uint8_t value){
+	if(value == GPIO_PIN_SET){
+ 3d6:	41 30       	cpi	r20, 0x01	; 1
+ 3d8:	29 f4       	brne	.+10     	; 0x3e4 <MCAL_GPIO_WRITE_PIN+0xe>
+		*(GPIOx) |= pin_number;
+ 3da:	fc 01       	movw	r30, r24
+ 3dc:	20 81       	ld	r18, Z
+ 3de:	62 2b       	or	r22, r18
+ 3e0:	60 83       	st	Z, r22
+ 3e2:	08 95       	ret
+	}
+	else{
+		*(GPIOx) &= ~(pin_number);
+ 3e4:	60 95       	com	r22
+ 3e6:	fc 01       	movw	r30, r24
+ 3e8:	20 81       	ld	r18, Z
+ 3ea:	62 23       	and	r22, r18
+ 3ec:	60 83       	st	Z, r22
+ 3ee:	08 95       	ret
+
+000003f0 <UART_INIT>:
+	p[2] = UART_RECIEVE();
+	p[3] = UART_RECIEVE();
+	return num;
+	
+	
+}
+ 3f0:	83 e3       	ldi	r24, 0x33	; 51
+ 3f2:	89 b9       	out	0x09, r24	; 9
+ 3f4:	8b b1       	in	r24, 0x0b	; 11
+ 3f6:	8d 7f       	andi	r24, 0xFD	; 253
+ 3f8:	8b b9       	out	0x0b, r24	; 11
+ 3fa:	8a b1       	in	r24, 0x0a	; 10
+ 3fc:	88 60       	ori	r24, 0x08	; 8
+ 3fe:	8a b9       	out	0x0a, r24	; 10
+ 400:	8a b1       	in	r24, 0x0a	; 10
+ 402:	80 61       	ori	r24, 0x10	; 16
+ 404:	8a b9       	out	0x0a, r24	; 10
+ 406:	08 95       	ret
+
+00000408 <UART_SEND>:
+ 408:	5d 9b       	sbis	0x0b, 5	; 11
+ 40a:	fe cf       	rjmp	.-4      	; 0x408 <UART_SEND>
+ 40c:	8c b9       	out	0x0c, r24	; 12
+ 40e:	08 95       	ret
+
+00000410 <UART_RECIEVE>:
+ 410:	5f 9b       	sbis	0x0b, 7	; 11
+ 412:	fe cf       	rjmp	.-4      	; 0x410 <UART_RECIEVE>
+ 414:	8c b1       	in	r24, 0x0c	; 12
+ 416:	08 95       	ret
+
+00000418 <UART_SEND_STRING>:
+
+void UART_SEND_STRING(unsigned char* str){
+ 418:	cf 93       	push	r28
+ 41a:	df 93       	push	r29
+ 41c:	ec 01       	movw	r28, r24
+	unsigned char* temp =str;
+	while(1){
+		if(*(temp) == '\0'){
+ 41e:	88 81       	ld	r24, Y
+ 420:	81 11       	cpse	r24, r1
+ 422:	03 c0       	rjmp	.+6      	; 0x42a <UART_SEND_STRING+0x12>
+			UART_SEND(*(temp));
+ 424:	0e 94 04 02 	call	0x408	; 0x408 <UART_SEND>
+		}
+		UART_SEND(*(temp));
+		temp++;
+	}
+	
+}
+ 428:	04 c0       	rjmp	.+8      	; 0x432 <UART_SEND_STRING+0x1a>
+	while(1){
+		if(*(temp) == '\0'){
+			UART_SEND(*(temp));
+			break;
+		}
+		UART_SEND(*(temp));
+ 42a:	0e 94 04 02 	call	0x408	; 0x408 <UART_SEND>
+		temp++;
+ 42e:	21 96       	adiw	r28, 0x01	; 1
+	}
+ 430:	f6 cf       	rjmp	.-20     	; 0x41e <UART_SEND_STRING+0x6>
+	
+}
+ 432:	df 91       	pop	r29
+ 434:	cf 91       	pop	r28
+ 436:	08 95       	ret
+
+00000438 <UART_RECIEVE_STRING>:
+
+ char* UART_RECIEVE_STRING(void){
+ 438:	cf 93       	push	r28
+ 43a:	df 93       	push	r29
+	 char* temp1 = arr;
+ 43c:	ca e7       	ldi	r28, 0x7A	; 122
+ 43e:	d0 e0       	ldi	r29, 0x00	; 0
+	 
+	while(1){
+		*(temp1) = UART_RECIEVE();
+ 440:	0e 94 08 02 	call	0x410	; 0x410 <UART_RECIEVE>
+ 444:	88 83       	st	Y, r24
+		if(*(temp1) == '#'){
+ 446:	83 32       	cpi	r24, 0x23	; 35
+ 448:	11 f0       	breq	.+4      	; 0x44e <UART_RECIEVE_STRING+0x16>
+			break;
+		}
+		temp1++;
+ 44a:	21 96       	adiw	r28, 0x01	; 1
+	}
+ 44c:	f9 cf       	rjmp	.-14     	; 0x440 <UART_RECIEVE_STRING+0x8>
+	return arr;
+	
+	
+ 44e:	8a e7       	ldi	r24, 0x7A	; 122
+ 450:	90 e0       	ldi	r25, 0x00	; 0
+ 452:	df 91       	pop	r29
+ 454:	cf 91       	pop	r28
+ 456:	08 95       	ret
+
+00000458 <_exit>:
+ 458:	f8 94       	cli
+
+0000045a <__stop_program>:
+ 45a:	ff cf       	rjmp	.-2      	; 0x45a <__stop_program>
